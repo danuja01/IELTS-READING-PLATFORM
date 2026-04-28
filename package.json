@@ -1,0 +1,15 @@
+{
+  "name": "ielts-platform",
+  "private": true,
+  "scripts": {
+    "web:dev": "pnpm --filter @ielts/web dev",
+    "web:build": "pnpm --filter @ielts/web build",
+    "web:start": "pnpm --filter @ielts/web start",
+    "web:lint": "pnpm --filter @ielts/web lint",
+    "clean": "rm -rf apps/web/.next",
+    "dev": "pnpm web:dev",
+    "build": "pnpm web:build",
+    "start": "pnpm web:start",
+    "lint": "pnpm web:lint"
+  }
+}

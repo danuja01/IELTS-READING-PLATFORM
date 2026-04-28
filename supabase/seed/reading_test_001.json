@@ -1,0 +1,169 @@
+{
+  "id": "reading_test_001",
+  "moduleType": "READING",
+  "title": "Cambridge Style Reading Test 001",
+  "version": 1,
+  "totalQuestions": 40,
+  "durationSeconds": 3600,
+  "sections": [
+    {
+      "id": "s1",
+      "order": 1,
+      "title": "Passage 1",
+      "passage": {
+        "contentHtml": "<h2>The Importance of Children's Play</h2><p id='pA'><strong>A</strong> Brick by brick, six-year-old Alice is building a magical kingdom...</p><p id='pB'><strong>B</strong> Minutes later, Alice has abandoned the kingdom in favour of playing schools...</p><p id='pC'><strong>C</strong> Play in all its rich variety is one of the highest achievements...</p>",
+        "contentMarkdown": "## The Importance of Children's Play\n\nA. Brick by brick, six-year-old Alice is building a magical kingdom...\n\nB. Minutes later, Alice has abandoned the kingdom...\n\nC. Play in all its rich variety is one of the highest achievements..."
+      },
+      "mapping": {
+        "paragraphAnchors": [
+          { "id": "s1_a", "label": "A", "paragraphIndex": 0 },
+          { "id": "s1_b", "label": "B", "paragraphIndex": 1 },
+          { "id": "s1_c", "label": "C", "paragraphIndex": 2 }
+        ]
+      }
+    },
+    {
+      "id": "s2",
+      "order": 2,
+      "title": "Passage 2",
+      "passage": {
+        "contentHtml": "<h2>The Growth of Bike-sharing Schemes</h2><p id='pA'><strong>A</strong> The original idea for an urban bike-sharing scheme dates back...</p><p id='pB'><strong>B</strong> As cities became denser, demand for alternatives rose...</p>",
+        "contentMarkdown": "## The Growth of Bike-sharing Schemes\n\nA. The original idea for an urban bike-sharing scheme dates back...\n\nB. As cities became denser, demand for alternatives rose..."
+      },
+      "mapping": {
+        "paragraphAnchors": [
+          { "id": "s2_a", "label": "A", "paragraphIndex": 0 },
+          { "id": "s2_b", "label": "B", "paragraphIndex": 1 }
+        ]
+      }
+    },
+    {
+      "id": "s3",
+      "order": 3,
+      "title": "Passage 3",
+      "passage": {
+        "contentHtml": "<h2>Motivational Factors and Hospitality</h2><p id='pA'><strong>A</strong> A critical ingredient in hotel success is superior staff performance...</p><p id='pB'><strong>B</strong> Motivation is influenced by growth pathways and management style...</p>",
+        "contentMarkdown": "## Motivational Factors and Hospitality\n\nA. A critical ingredient in hotel success is superior staff performance...\n\nB. Motivation is influenced by growth pathways and management style..."
+      },
+      "mapping": {
+        "paragraphAnchors": [
+          { "id": "s3_a", "label": "A", "paragraphIndex": 0 },
+          { "id": "s3_b", "label": "B", "paragraphIndex": 1 }
+        ]
+      }
+    }
+  ],
+  "questionGroups": [
+    {
+      "id": "g1",
+      "sectionId": "s1",
+      "title": "Questions 1-8",
+      "instructions": "Complete the notes below. Choose ONE WORD ONLY from the passage.",
+      "questionIds": ["q1", "q2", "q3", "q4", "q5", "q6", "q7", "q8"]
+    },
+    {
+      "id": "g2",
+      "sectionId": "s1",
+      "title": "Questions 9-13",
+      "instructions": "Do the following statements agree with the information in Reading Passage 1?",
+      "questionIds": ["q9", "q10", "q11", "q12", "q13"]
+    },
+    {
+      "id": "g3",
+      "sectionId": "s2",
+      "title": "Questions 14-20",
+      "instructions": "Complete each question according to the instructions in the panel.",
+      "questionIds": ["q14", "q15", "q16", "q17", "q18", "q19", "q20"]
+    },
+    {
+      "id": "g4",
+      "sectionId": "s3",
+      "title": "Questions 21-40",
+      "instructions": "Answer all questions.",
+      "questionIds": [
+        "q21","q22","q23","q24","q25","q26","q27","q28","q29","q30",
+        "q31","q32","q33","q34","q35","q36","q37","q38","q39","q40"
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "number": 1,
+      "sectionId": "s1",
+      "groupId": "g1",
+      "type": "FILL_BLANK",
+      "prompt": "Building a magical kingdom may help develop ______.",
+      "responseMode": "WORD_LIMIT",
+      "maxWords": 1,
+      "acceptedAnswers": ["creativity"],
+      "mapping": { "paragraphRefs": ["A"] }
+    },
+    {
+      "id": "q2",
+      "number": 2,
+      "sectionId": "s1",
+      "groupId": "g1",
+      "type": "FILL_BLANK",
+      "prompt": "Board games involve ______ and turn-taking.",
+      "responseMode": "WORD_LIMIT",
+      "maxWords": 1,
+      "acceptedAnswers": ["rules"],
+      "mapping": { "paragraphRefs": ["B"] }
+    },
+    {
+      "id": "q9",
+      "number": 9,
+      "sectionId": "s1",
+      "groupId": "g2",
+      "type": "TFNG",
+      "prompt": "Children with self-control are better at problem-solving.",
+      "options": ["TRUE", "FALSE", "NOT_GIVEN"],
+      "answerKey": "TRUE",
+      "mapping": { "paragraphRefs": ["C"] }
+    },
+    {
+      "id": "q14",
+      "number": 14,
+      "sectionId": "s2",
+      "groupId": "g3",
+      "type": "MATCH_HEADINGS",
+      "prompt": "A description of how people misused a bike-sharing scheme.",
+      "availableHeadings": [
+        { "key": "A", "text": "Origins of urban bike sharing" },
+        { "key": "B", "text": "Technology-enabled recovery and growth" },
+        { "key": "C", "text": "Reasons for project rejection" },
+        { "key": "D", "text": "Misuse and vandalism problems" }
+      ],
+      "paragraphTargets": [{ "paragraphLabel": "E", "slotId": "slot-e" }],
+      "answerHeadingKey": "D",
+      "mapping": { "paragraphRefs": ["E"] }
+    },
+    {
+      "id": "q19",
+      "number": 19,
+      "sectionId": "s2",
+      "groupId": "g3",
+      "type": "MCQ_SINGLE",
+      "prompt": "Which statement best describes the second-generation scheme?",
+      "options": [
+        { "key": "A", "label": "It failed due to high user fees." },
+        { "key": "B", "label": "It failed when a partner withdrew support." },
+        { "key": "C", "label": "It succeeded only in suburban areas." },
+        { "key": "D", "label": "It never launched publicly." }
+      ],
+      "answerKey": "B"
+    },
+    {
+      "id": "q40",
+      "number": 40,
+      "sectionId": "s3",
+      "groupId": "g4",
+      "type": "FILL_BLANK",
+      "prompt": "Complete the summary with one word: Staff stay longer when ______ is encouraged.",
+      "responseMode": "WORD_LIMIT",
+      "maxWords": 1,
+      "acceptedAnswers": ["cooperation", "collaboration"]
+    }
+  ]
+}

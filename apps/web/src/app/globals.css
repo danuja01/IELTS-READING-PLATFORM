@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base reset ──────────────────────────────────────────── */
+html,
+body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #c8c8c8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* ── IELTS passage typography ───────────────────────────── */
+.ielts-passage {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 1.65;
+  color: #1a1a1a;
+}
+
+.ielts-passage h2 {
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+  color: #111;
+}
+
+.ielts-passage p {
+  margin: 0 0 10px 0;
+  text-align: justify;
+  color: #1a1a1a;
+}
+
+.ielts-passage p:last-child {
+  margin-bottom: 0;
+}
+
+.ielts-passage strong {
+  font-weight: 700;
+  color: #000;
+}
+
+.ielts-passage em {
+  font-style: italic;
+}
+
+/* Paragraph letter labels (A, B, C …) */
+.ielts-passage p > strong:first-child {
+  display: inline-block;
+  min-width: 1.4rem;
+  font-weight: 700;
+  color: #333;
+}
+
+/* ── Passage text highlights ────────────────────────────── */
+
+/* Applied by useTextHighlight via DOM manipulation */
+mark.ielts-hl {
+  background-color: #fff176; /* yellow-300 */
+  color: inherit;
+  border-radius: 2px;
+  padding: 0 1px;
+  cursor: default;
+}
+
+mark.ielts-hl:hover {
+  background-color: #fdd835;
+  outline: 1px solid #f9a825;
+}
+
+/* ── No-print (IELTS exam restriction) ───────────────────── */
+@media print {
+  body {
+    display: none !important;
+  }
+}
+
+/* ── Scrollbar styling ────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #e0e0e0;
+}
+::-webkit-scrollbar-thumb {
+  background: #aaa;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #888;
+}
