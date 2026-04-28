@@ -6,7 +6,7 @@ import {
   ExamSessionProvider,
   useExamSessionStore,
 } from "@/modules/exam-engine/store/useExamSessionStore";
-import { ReadingPlayerLayout } from "@/modules/reading/components/ReadingPlayerLayout";
+import { ModernReadingPlayerLayout } from "@/modules/reading/components/ModernReadingPlayerLayout";
 import { readingTest001 } from "@/modules/reading/data/readingTest001";
 import type { ExamAttemptSnapshot } from "@/types/exam";
 
@@ -15,8 +15,7 @@ function ReadingAttemptRuntime() {
   const { state } = useExamSessionStore();
 
   return (
-    <ReadingPlayerLayout
-      attemptId={state.attemptId}
+    <ModernReadingPlayerLayout
       sections={readingTest001.sections}
       questionGroups={readingTest001.questionGroups}
       questions={readingTest001.questions}

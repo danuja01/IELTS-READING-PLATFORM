@@ -1,0 +1,5 @@
+export { YnngQuestionComponent } from './YnngQuestion'
+export { GapFillQuestionComponent } from './GapFillQuestion'
+export { MatchHeadQuestionComponent } from './MatchHeadQuestion'
+export { MatchInfoQuestionComponent } from './MatchInfoQuestion'
+export { MatchFeatQuestionComponent } from './MatchFeatQuestion'

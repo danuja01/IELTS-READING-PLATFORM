@@ -22,7 +22,7 @@ function getTextOffset(root: HTMLElement, node: Node, offset: number): number {
  * Wrap every text-node fragment covered by `range` in a <mark> element.
  * Works even when the selection spans multiple block elements.
  */
-function applyMarkToRange(range: Range, id: string): void {
+function applyMarkToRange(range: Range, id: string, extraClass: string = ""): void {
   const ancestor = range.commonAncestorContainer;
 
   // Collect every text node that intersects the range
@@ -48,7 +48,7 @@ function applyMarkToRange(range: Range, id: string): void {
     if (end - start < markable.length) markable.splitText(end - start);
 
     const mark = document.createElement("mark");
-    mark.className = "ielts-hl";
+    mark.className = `ielts-hl ${extraClass}`.trim();
     mark.dataset.highlightId = id;
     mark.appendChild(markable.cloneNode(true));
     markable.parentNode?.replaceChild(mark, markable);
@@ -178,13 +178,21 @@ export function useTextHighlight({
 
   const addNoteFromContextMenu = useCallback(
     async (content: string) => {
-      if (!contextMenu || !content.trim()) return null;
+      if (!contextMenu || !content.trim() || !savedRangeRef.current) return null;
+
+      const id = crypto.randomUUID();
+
+      try {
+        applyMarkToRange(savedRangeRef.current, id, "highlight-note");
+      } catch {
+        // ignore DOM errors
+      }
 
       savedRangeRef.current = null;
       window.getSelection()?.removeAllRanges();
 
       const next: PassageNote = {
-        id: crypto.randomUUID(),
+        id,
         attemptId,
         sectionId,
         startOffset: contextMenu.startOffset,

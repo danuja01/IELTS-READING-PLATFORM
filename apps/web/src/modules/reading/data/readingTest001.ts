@@ -374,82 +374,82 @@ export const readingTest001: ExamTestContent = {
   // QUESTIONS  (40 total)
   // ─────────────────────────────────────────────────────────
   questions: [
-    // ── Q1–4: Notes completion (Passage 1) ─────────────────
+    // ── Q1–4: Gap fill completion (Passage 1) ─────────────────
     {
       id: "q1",
       number: 1,
       sectionId: "s1",
       groupId: "g1",
-      type: "FILL_BLANK",
-      prompt: "The leaves of the tree are ……………… in shape",
-      responseMode: "WORD_LIMIT",
-      maxWords: 1,
-      acceptedAnswers: ["oval"],
-    },
-    {
-      id: "q2",
-      number: 2,
-      sectionId: "s1",
-      groupId: "g1",
-      type: "FILL_BLANK",
-      prompt: "The ……………… surrounds the fruit and breaks open when the fruit is ripe",
-      responseMode: "WORD_LIMIT",
-      maxWords: 1,
-      acceptedAnswers: ["husk"],
-    },
-    {
-      id: "q3",
-      number: 3,
-      sectionId: "s1",
-      groupId: "g1",
-      type: "FILL_BLANK",
-      prompt: "The ……………… is used to produce the spice nutmeg",
-      responseMode: "WORD_LIMIT",
-      maxWords: 1,
-      acceptedAnswers: ["seed"],
-    },
-    {
-      id: "q4",
-      number: 4,
-      sectionId: "s1",
-      groupId: "g1",
-      type: "FILL_BLANK",
-      prompt: "The covering known as the aril is used to produce ………………",
-      responseMode: "WORD_LIMIT",
-      maxWords: 1,
-      acceptedAnswers: ["mace"],
+      type: "GAP_FILL",
+      prompt: "Complete the notes below. Choose NO MORE THAN ONE WORD from the passage for each answer.",
+      text: `The nutmeg tree information:
+• The leaves of the tree are {{1}} in shape
+• The {{2}} surrounds the fruit and breaks open when the fruit is ripe  
+• The {{3}} is used to produce the spice nutmeg
+• The covering known as the aril is used to produce {{4}}`,
+      gaps: [
+        {
+          id: "gap1",
+          position: 1,
+          maxWords: 1,
+          acceptedAnswers: ["oval"],
+          placeholder: "shape"
+        },
+        {
+          id: "gap2", 
+          position: 2,
+          maxWords: 1,
+          acceptedAnswers: ["husk"],
+          placeholder: "part"
+        },
+        {
+          id: "gap3",
+          position: 3, 
+          maxWords: 1,
+          acceptedAnswers: ["seed"],
+          placeholder: "part"
+        },
+        {
+          id: "gap4",
+          position: 4,
+          maxWords: 1, 
+          acceptedAnswers: ["mace"],
+          placeholder: "spice"
+        }
+      ],
+      instructions: "Write your answers in boxes 1-4 on your answer sheet."
     },
 
-    // ── Q5–7: True / False / Not Given (Passage 1) ─────────
+    // ── Q5–7: YNNG Questions (Passage 1) ─────────
     {
       id: "q5",
       number: 5,
       sectionId: "s1",
       groupId: "g2",
-      type: "TFNG",
+      type: "YNNG",
       prompt: "In the Middle Ages, most Europeans knew where nutmeg was grown.",
-      options: ["TRUE", "FALSE", "NOT GIVEN"],
-      answerKey: "FALSE",
+      options: ["YES", "NO", "NOT GIVEN"],
+      answerKey: "NO",
     },
     {
-      id: "q6",
+      id: "q6", 
       number: 6,
       sectionId: "s1",
-      groupId: "g2",
-      type: "TFNG",
-      prompt: "The VOC was the world's first major trading company.",
-      options: ["TRUE", "FALSE", "NOT GIVEN"],
+      groupId: "g2", 
+      type: "YNNG",
+      prompt: "The writer believes the VOC was an innovative business model.",
+      options: ["YES", "NO", "NOT GIVEN"],
       answerKey: "NOT GIVEN",
     },
     {
       id: "q7",
       number: 7,
-      sectionId: "s1",
+      sectionId: "s1", 
       groupId: "g2",
-      type: "TFNG",
-      prompt: "Following the Treaty of Breda, the Dutch had control of all the islands where nutmeg grew.",
-      options: ["TRUE", "FALSE", "NOT GIVEN"],
-      answerKey: "TRUE",
+      type: "YNNG",
+      prompt: "The writer suggests the Dutch were more strategic than other European powers.",
+      options: ["YES", "NO", "NOT GIVEN"],
+      answerKey: "YES",
     },
 
     // ── Q8–13: Table completion (Passage 1) ────────────────
@@ -526,24 +526,39 @@ export const readingTest001: ExamTestContent = {
       acceptedAnswers: ["tsunami"],
     },
 
-    // ── Q14–18: Paragraph matching (Passage 2) ─────────────
+    // ── Q14–18: Match Headings (Passage 2) ─────────────
     {
       id: "q14",
       number: 14,
-      sectionId: "s2",
+      sectionId: "s2", 
       groupId: "g4",
-      type: "MCQ_SINGLE",
-      prompt: "reference to the amount of time when a car is not in use",
-      options: [
-        { key: "A", label: "A" },
-        { key: "B", label: "B" },
-        { key: "C", label: "C" },
-        { key: "D", label: "D" },
-        { key: "E", label: "E" },
-        { key: "F", label: "F" },
-        { key: "G", label: "G" },
+      type: "MATCH_HEAD",
+      prompt: "The reading passage has seven paragraphs, A-G. Choose the correct heading for paragraphs B-F from the list of headings below.",
+      availableHeadings: [
+        { key: "i", text: "The search for the unknown" },
+        { key: "ii", text: "Exploration as a universal human trait" },
+        { key: "iii", text: "Modern definitions of exploration" },
+        { key: "iv", text: "The impact of literature on exploration" },
+        { key: "v", text: "Why exploration seems outdated" },
+        { key: "vi", text: "The continuing need for exploration" },
+        { key: "vii", text: "Personal transformation through travel" },
+        { key: "viii", text: "The golden age of exploration" }
       ],
-      answerKey: "C",
+      paragraphTargets: [
+        { paragraphLabel: "B", slotId: "para_b" },
+        { paragraphLabel: "C", slotId: "para_c" },
+        { paragraphLabel: "D", slotId: "para_d" },
+        { paragraphLabel: "E", slotId: "para_e" },
+        { paragraphLabel: "F", slotId: "para_f" }
+      ],
+      answerKeys: {
+        "para_b": "ii",
+        "para_c": "vii", 
+        "para_d": "v",
+        "para_e": "iii",
+        "para_f": "vi"
+      },
+      instructions: "Write the correct number, i-viii, in boxes 14-18 on your answer sheet."
     },
     {
       id: "q15",

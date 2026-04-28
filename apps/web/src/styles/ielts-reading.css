@@ -1,0 +1,255 @@
+/* IELTS Reading Platform - Modern Styles */
+
+/* Reset and base styles */
+.ielts-container {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Passage content styles */
+.ielts-passage {
+  line-height: 1.7;
+  color: #1f2937;
+  font-size: 15px;
+}
+
+.ielts-passage h1,
+.ielts-passage h2,
+.ielts-passage h3 {
+  color: #111827;
+  font-weight: 600;
+  margin: 1.5em 0 1em 0;
+  line-height: 1.4;
+}
+
+.ielts-passage h1 {
+  font-size: 1.5em;
+}
+
+.ielts-passage h2 {
+  font-size: 1.3em;
+}
+
+.ielts-passage h3 {
+  font-size: 1.1em;
+}
+
+.ielts-passage p {
+  margin: 1.2em 0;
+  text-align: justify;
+}
+
+.ielts-passage strong {
+  font-weight: 600;
+  color: #111827;
+}
+
+.ielts-passage em {
+  font-style: italic;
+  color: #374151;
+}
+
+/* Highlight styles - prevent layout shift */
+.ielts-passage mark {
+  background-color: rgba(255, 235, 59, 0.6);
+  padding: 0 2px;
+  border-radius: 2px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  /* Prevent layout shift */
+  display: inline;
+  line-height: inherit;
+  margin: 0;
+  border: none;
+  /* Ensure highlights don't affect text flow */
+  vertical-align: baseline;
+}
+
+.ielts-passage mark.highlight-yellow {
+  background-color: rgba(255, 235, 59, 0.6);
+}
+
+.ielts-passage mark.highlight-green {
+  background-color: rgba(76, 175, 80, 0.3);
+}
+
+.ielts-passage mark.highlight-blue {
+  background-color: rgba(33, 150, 243, 0.3);
+}
+
+.ielts-passage mark.highlight-pink {
+  background-color: rgba(233, 30, 99, 0.3);
+}
+
+.ielts-passage mark.highlight-note {
+  background-color: transparent;
+  border-bottom: 2px dashed #eab308;
+  cursor: pointer;
+  position: relative;
+}
+
+.ielts-passage mark.highlight-note:hover {
+  background-color: rgba(234, 179, 8, 0.1);
+}
+
+/* Selection styles */
+.ielts-passage ::selection {
+  background-color: rgba(59, 130, 246, 0.2);
+}
+
+.ielts-passage ::-moz-selection {
+  background-color: rgba(59, 130, 246, 0.2);
+}
+
+/* Question card animations */
+.question-card {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+}
+
+.question-card:hover {
+  transform: translateY(-1px);
+}
+
+.question-card.active {
+  transform: translateY(0);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Gap fill input styles */
+.gap-input-overlay {
+  position: absolute;
+  z-index: 1000;
+  background: white;
+  border: 2px solid #3b82f6;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  padding: 12px;
+  min-width: 200px;
+}
+
+.gap-input-overlay input {
+  width: 100%;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.gap-input-overlay input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.gap-blank {
+  display: inline-block;
+  min-width: 60px;
+  min-height: 24px;
+  padding: 2px 8px;
+  margin: 0 2px;
+  background-color: rgba(59, 130, 246, 0.1);
+  border-bottom: 2px solid #3b82f6;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: inherit;
+  line-height: inherit;
+  vertical-align: baseline;
+}
+
+.gap-blank:hover {
+  background-color: rgba(59, 130, 246, 0.2);
+}
+
+.gap-blank.filled {
+  background-color: rgba(34, 197, 94, 0.1);
+  border-bottom-color: #22c55e;
+  color: #166534;
+  font-weight: 500;
+}
+
+/* Timer styles */
+.timer-hidden {
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+}
+
+/* Scrollbar styles */
+.ielts-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.ielts-scrollbar::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+.ielts-scrollbar::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.ielts-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Loading states */
+.loading-shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Focus management */
+.focus-visible:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  .ielts-passage {
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+  
+  .question-card {
+    break-inside: avoid;
+    margin-bottom: 1em;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .ielts-passage mark {
+    background-color: #ffff00;
+    color: #000000;
+    border: 1px solid #000000;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .question-card,
+  .gap-blank,
+  .timer-hidden {
+    transition: none;
+  }
+  
+  .loading-shimmer {
+    animation: none;
+    background: #f0f0f0;
+  }
+}

@@ -3,6 +3,13 @@
 import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useExamSessionStore } from "@/modules/exam-engine/store/useExamSessionStore";
 import { useTextHighlight } from "@/modules/reading/hooks/useTextHighlight";
+import {
+  YnngQuestionComponent,
+  GapFillQuestionComponent,
+  MatchHeadQuestionComponent,
+  MatchInfoQuestionComponent,
+  MatchFeatQuestionComponent,
+} from "@/components/exam/questions";
 import type {
   McqMultipleQuestion,
   QuestionGroup,
@@ -137,34 +144,59 @@ function QuestionCard({
       } ${isCurrent ? "bg-white" : ""}`}
       onClick={onSelect}
     >
-      {/* header row */}
-      <div className="mb-2 flex items-center gap-2">
-        <span className="shrink-0 rounded bg-[#3a3a3a] px-1.5 py-0.5 text-[11px] font-bold text-white">
-          {question.number}
-        </span>
-        {question.type === "MCQ_MULTIPLE" && (
-          <span className="text-[10px] font-semibold text-amber-700">
-            (Choose {(question as McqMultipleQuestion).chooseCount})
-          </span>
-        )}
-        <button
-          type="button"
-          title="Flag for review"
-          className={`ml-auto flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-[10px] font-bold transition-colors ${
-            isFlagged
-              ? "border-amber-500 bg-amber-100 text-amber-700"
-              : "border-neutral-300 text-neutral-400 hover:border-amber-400 hover:text-amber-500"
-          }`}
-          onClick={(e) => {
-            e.stopPropagation();
-            onToggleFlag();
-          }}
-        >
-          ⚑
-        </button>
-      </div>
+      {/* header row - only show for legacy question types */}
+      {!["YNNG", "GAP_FILL", "MATCH_HEAD", "MATCH_INFO", "MATCH_FEAT"].includes(question.type) && (
+        <>
+          <div className="mb-2 flex items-center gap-2">
+            <span className="shrink-0 rounded bg-[#3a3a3a] px-1.5 py-0.5 text-[11px] font-bold text-white">
+              {question.number}
+            </span>
+            {question.type === "MCQ_MULTIPLE" && (
+              <span className="text-[10px] font-semibold text-amber-700">
+                (Choose {(question as McqMultipleQuestion).chooseCount})
+              </span>
+            )}
+            <button
+              type="button"
+              title="Flag for review"
+              className={`ml-auto flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-[10px] font-bold transition-colors ${
+                isFlagged
+                  ? "border-amber-500 bg-amber-100 text-amber-700"
+                  : "border-neutral-300 text-neutral-400 hover:border-amber-400 hover:text-amber-500"
+              }`}
+              onClick={(e) => {
+                e.stopPropagation();
+                onToggleFlag();
+              }}
+            >
+              ⚑
+            </button>
+          </div>
 
-      <p className="mb-3 text-[13px] leading-snug text-neutral-900">{question.prompt}</p>
+          <p className="mb-3 text-[13px] leading-snug text-neutral-900">{question.prompt}</p>
+        </>
+      )}
+
+      {/* Header for new question types with integrated flag button */}
+      {["YNNG", "GAP_FILL", "MATCH_HEAD", "MATCH_INFO", "MATCH_FEAT"].includes(question.type) && (
+        <div className="mb-2 flex items-center justify-end">
+          <button
+            type="button"
+            title="Flag for review"
+            className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full border text-[10px] font-bold transition-colors ${
+              isFlagged
+                ? "border-amber-500 bg-amber-100 text-amber-700"
+                : "border-neutral-300 text-neutral-400 hover:border-amber-400 hover:text-amber-500"
+            }`}
+            onClick={(e) => {
+              e.stopPropagation();
+              onToggleFlag();
+            }}
+          >
+            ⚑
+          </button>
+        </div>
+      )}
 
       {/* MCQ_SINGLE */}
       {question.type === "MCQ_SINGLE" && (
@@ -227,7 +259,7 @@ function QuestionCard({
         </fieldset>
       )}
 
-      {/* FILL_BLANK */}
+      {/* FILL_BLANK (legacy - keeping for backward compatibility) */}
       {question.type === "FILL_BLANK" && (
         <input
           type="text"
@@ -242,6 +274,52 @@ function QuestionCard({
           }
           onChange={(e) => onChange(e.target.value)}
         />
+      )}
+
+      {/* New question types with enhanced components */}
+      {question.type === "YNNG" && (
+        <div className="mt-2" onClick={(e) => e.stopPropagation()}>
+          <YnngQuestionComponent 
+            question={question} 
+            questionNumber={question.number}
+          />
+        </div>
+      )}
+
+      {question.type === "GAP_FILL" && (
+        <div className="mt-2" onClick={(e) => e.stopPropagation()}>
+          <GapFillQuestionComponent 
+            question={question} 
+            questionNumber={question.number}
+          />
+        </div>
+      )}
+
+      {question.type === "MATCH_HEAD" && (
+        <div className="mt-2" onClick={(e) => e.stopPropagation()}>
+          <MatchHeadQuestionComponent 
+            question={question} 
+            questionNumber={question.number}
+          />
+        </div>
+      )}
+
+      {question.type === "MATCH_INFO" && (
+        <div className="mt-2" onClick={(e) => e.stopPropagation()}>
+          <MatchInfoQuestionComponent 
+            question={question} 
+            questionNumber={question.number}
+          />
+        </div>
+      )}
+
+      {question.type === "MATCH_FEAT" && (
+        <div className="mt-2" onClick={(e) => e.stopPropagation()}>
+          <MatchFeatQuestionComponent 
+            question={question} 
+            questionNumber={question.number}
+          />
+        </div>
       )}
     </div>
   );

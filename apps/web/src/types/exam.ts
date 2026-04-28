@@ -2,10 +2,13 @@ export type ExamModuleType = "READING" | "LISTENING" | "WRITING" | "SPEAKING";
 
 export type ReadingQuestionType =
   | "MCQ_SINGLE"
-  | "MCQ_MULTIPLE"
+  | "MCQ_MULTIPLE" 
   | "TFNG"
-  | "MATCH_HEADINGS"
-  | "FILL_BLANK";
+  | "YNNG"
+  | "GAP_FILL"
+  | "MATCH_HEAD"
+  | "MATCH_INFO"
+  | "MATCH_FEAT";
 
 export type QuestionType = ReadingQuestionType;
 
@@ -66,26 +69,55 @@ export interface TfngQuestion extends BaseQuestion {
   answerKey: "TRUE" | "FALSE" | "NOT GIVEN";
 }
 
-export interface MatchHeadingsQuestion extends BaseQuestion {
-  type: "MATCH_HEADINGS";
-  availableHeadings: Array<{ key: string; text: string }>;
-  paragraphTargets: Array<{ paragraphLabel: string; slotId: string }>;
-  answerHeadingKey: string;
+export interface YnngQuestion extends BaseQuestion {
+  type: "YNNG";
+  options: ["YES", "NO", "NOT GIVEN"];
+  answerKey: "YES" | "NO" | "NOT GIVEN";
 }
 
-export interface FillBlankQuestion extends BaseQuestion {
-  type: "FILL_BLANK";
-  responseMode: "WORD_LIMIT" | "PHRASE_LIMIT";
-  maxWords?: number;
-  acceptedAnswers: string[];
+export interface MatchHeadQuestion extends BaseQuestion {
+  type: "MATCH_HEAD";
+  availableHeadings: Array<{ key: string; text: string }>;
+  paragraphTargets: Array<{ paragraphLabel: string; slotId: string }>;
+  answerKeys: Record<string, string>; // { paragraphId: headingKey }
+}
+
+export interface MatchInfoQuestion extends BaseQuestion {
+  type: "MATCH_INFO";
+  statements: Array<{ key: string; text: string }>;
+  paragraphOptions: Array<{ key: string; label: string }>;
+  answerKeys: Record<string, string>; // { statementKey: paragraphKey }
+}
+
+export interface MatchFeatQuestion extends BaseQuestion {
+  type: "MATCH_FEAT";
+  statements: Array<{ key: string; text: string }>;
+  listItems: Array<{ key: string; text: string; category?: string }>;
+  answerKeys: Record<string, string>; // { statementKey: listItemKey }
+}
+
+export interface GapFillQuestion extends BaseQuestion {
+  type: "GAP_FILL";
+  text: string; // Text with placeholder markers like {{1}}, {{2}}
+  gaps: Array<{
+    id: string;
+    position: number; // Position in text
+    maxWords?: number;
+    acceptedAnswers: string[];
+    placeholder?: string;
+  }>;
+  instructions?: string;
 }
 
 export type ReadingQuestion =
   | McqSingleQuestion
   | McqMultipleQuestion
   | TfngQuestion
-  | MatchHeadingsQuestion
-  | FillBlankQuestion;
+  | YnngQuestion
+  | GapFillQuestion
+  | MatchHeadQuestion
+  | MatchInfoQuestion
+  | MatchFeatQuestion;
 
 export interface QuestionGroup {
   id: string;
